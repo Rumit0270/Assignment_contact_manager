@@ -16,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', routes.user);
+app.use('/api/contacts', routes.contact);
+
 app.get('/api/', (req, res) => {
     res.send('Hello world');
 });

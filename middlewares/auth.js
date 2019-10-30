@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { User } = require('../models').models;
 
 const isValidToken = async (userToken, id) => {
 
@@ -15,6 +16,7 @@ const isValidToken = async (userToken, id) => {
             is_valid: isValid
         } = res;
 
+        //return true;
         return isValid && id === userId;
     } catch(err) {
         throw err;
@@ -35,7 +37,14 @@ const verfiyFBLogin = async (req, res, next) => {
 
         if (await isValidToken(clientToken, userId)) {
             // Create a user with above data
-            console.log('Verified');
+            const [user, created] = await User.findOrCreate({
+                where: { id: userId },
+                defaults: {
+                    name,
+                    email
+                }
+            });
+            req.user = user;
             next()
         } else {
             // token in invalid

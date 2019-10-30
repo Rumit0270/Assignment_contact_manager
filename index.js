@@ -5,8 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const routes = require('./routes');
-const { sequelize, models } = require('./models');
-const { User, Contact } = models;
+const { sequelize } = require('./models');
 const { seedUserAndContacts } = require('./seeds/user');
 
 const app = express();

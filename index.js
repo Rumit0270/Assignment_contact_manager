@@ -5,6 +5,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const routes = require('./routes');
+const { sequelize, models } = require('./models');
+const { User, Contact } = models;
+const { seedUserAndContacts } = require('./seeds/user');
 
 const app = express();
 app.use(cors());
@@ -19,7 +22,15 @@ app.get('/api/', (req, res) => {
 });
 
 const PORT = process.env.APP_PORT || 4000;
+const eraseDatabaseOnSync = true;
 
-app.listen(PORT, () => {
-    console.log(`Server listening at port: ${PORT}`);
-});
+sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+
+    if(eraseDatabaseOnSync) {
+        await seedUserAndContacts();
+    }
+
+    app.listen(PORT, () => {
+        console.log(`Server listening at port: ${PORT}`);
+    });    
+}).catch(err => console.log(err));;

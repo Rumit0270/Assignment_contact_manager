@@ -7,7 +7,7 @@ const passport = require('../middlewares/passport');
 const router = Router();
 const requireAuth = passport.authenticate('jwt', { session: false });
 
-router.get('/login', verfiyFBLogin, (req, res) => {
+router.post('/login', verfiyFBLogin, (req, res) => {
 
     const user = req.user;
     const token = generateJWTTOken(user);

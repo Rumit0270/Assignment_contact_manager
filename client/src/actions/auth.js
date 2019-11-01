@@ -9,6 +9,8 @@ export const login = (data) => {
             const token = response.data.token;
             localStorage.setItem('token', token);
 
+            console.log('----------------------');
+            console.log(token)
             dispatch({
                 type: AUTH_USER,
                 payload: token

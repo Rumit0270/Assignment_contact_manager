@@ -1,4 +1,4 @@
-import { FETCH_CONTACTS } from './types';
+import { FETCH_CONTACTS, DELETE_CONTACT } from './types';
 import apiService from '../services/apiService';
 
 export const fetchContacts = () => {
@@ -14,6 +14,23 @@ export const fetchContacts = () => {
             dispatch({
                 type: FETCH_CONTACTS,
                 payload: []
+            });
+        }
+    };
+};
+
+export const deleteContact = (id) => {
+    return async dispatch => {
+        try {
+            await apiService.delete(`/api/contacts/${id}`);
+            dispatch({
+                type: DELETE_CONTACT,
+                payload: id
+            });
+        } catch (err) {
+            dispatch({
+                type: DELETE_CONTACT,
+                payload: null
             });
         }
     };

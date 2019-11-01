@@ -24,7 +24,7 @@ class Login extends React.Component {
         // TODO:- Show spinner
     }
 
-    fbLoginResponseReceived(response) {
+    fbLoginResponseReceived = (response) => {
 
         const {
             accessToken,
@@ -38,6 +38,7 @@ class Login extends React.Component {
         if (!userId) {
             return
         }
+        console.log(this.props);
 
         this.props.login(data);
     }

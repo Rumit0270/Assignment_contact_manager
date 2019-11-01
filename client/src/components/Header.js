@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
     return (
@@ -10,7 +11,7 @@ const Header = (props) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link href="#home"> <FontAwesomeIcon icon={faUserPlus} /> Add Contact</Nav.Link>
+                    <NavLink to='/home/contactadd'> <FontAwesomeIcon icon={faUserPlus} /> Add Contact </NavLink>
                     <Nav.Link href="#link"> <FontAwesomeIcon icon={faSignOutAlt} /> Logout</Nav.Link>
                 </Nav>
             </Navbar.Collapse>

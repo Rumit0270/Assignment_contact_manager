@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchContacts } from '../actions/contact';
+import { Accordion } from 'react-bootstrap';
+import Contact from './Contact';
 
 class ContactList extends React.Component {
 
@@ -17,13 +19,19 @@ class ContactList extends React.Component {
         }
 
         return(
-            JSON.stringify(contacts)
+            <Accordion>
+                { contacts.map(contact => {
+                    return <Contact key={contact.email} contact={contact}/>
+                }) }
+            </Accordion>
         );
     }
 
     render() {
         return (
-            <div>Contact List { JSON.stringify(this.props.contacts)} </div>
+            <div className="jumbotron">
+                { this.renderContacts() }
+            </div>
         );
     }
 

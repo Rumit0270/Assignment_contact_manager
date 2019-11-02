@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchContacts } from '../actions/contact';
 import { Accordion } from 'react-bootstrap';
 import Contact from './Contact';
+import './ContactList.css';
 
 class ContactList extends React.Component {
 
@@ -23,7 +24,7 @@ class ContactList extends React.Component {
             );
         } else {
             return (
-                <div>No contacts added yet!</div>
+                <h4 className="nocontact">No contacts added yet!</h4>
             )
         }
     }

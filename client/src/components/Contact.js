@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeSquare, faPhone, faUserEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { deleteContact } from '../actions/contact';
-
+import './Contact.css';
 class Contact extends React.Component {
 
     handleDeleteContact = () => {
@@ -25,7 +25,7 @@ class Contact extends React.Component {
             <Card>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey={email}>
-                        { name }
+                        <h5> { name } </h5>
                     </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey={email}>
@@ -35,7 +35,7 @@ class Contact extends React.Component {
                         <br/>
                         <div className="ml-auto">
                         <Button style={{ marginRight: '15px'}} onClick={this.handleEditContact}> <FontAwesomeIcon icon={faUserEdit} /> </Button>
-                        <Button onClick={this.handleDeleteContact}> <FontAwesomeIcon icon={faTrash} /></Button>
+                        <Button onClick={this.handleDeleteContact} className="btn btn-danger"> <FontAwesomeIcon icon={faTrash} /></Button>
                         </div>
                     </Card.Body>
                 </Accordion.Collapse>

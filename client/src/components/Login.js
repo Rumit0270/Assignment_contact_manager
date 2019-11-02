@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
 import { login } from '../actions/auth';
+import './Login.css';
 
 class Login extends React.Component {
 
@@ -38,14 +39,12 @@ class Login extends React.Component {
         if (!userId) {
             return
         }
-        console.log(this.props);
-
         this.props.login(data);
     }
 
     render() {
         return (
-            <div>
+            <div className="center">
                 <FacebookLogin 
                     appId="430617580865007"
                     autoLoad={true}

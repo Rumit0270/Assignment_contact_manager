@@ -21,9 +21,10 @@ export const login = (data) => {
     }
 };
 
-export const logout = () => {
+export const logout = (callback) => {
 
     localStorage.removeItem('token');
+    callback();
     return {
         type: LOGOUT_USER,
         payload: null

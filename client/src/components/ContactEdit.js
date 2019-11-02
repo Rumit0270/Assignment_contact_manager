@@ -4,19 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { updateContact } from '../actions/contact';
-
-const FieldInput = ({ input, meta, type, placeholder, min, max }) => {
-    return (
-        <Form.Control
-            type={type}
-            placeholder={placeholder}
-            min={min}
-            max={max}
-            value={input.value}
-            onChange={input.onChange}
-            />
-    )
-}
+import FieldInput from './FieldInput';
 class ContactEdit extends React.Component {
 
     onSubmit = (formProps) => {
@@ -35,36 +23,39 @@ class ContactEdit extends React.Component {
         const { handleSubmit } = this.props; 
 
         return (
-            <Form onSubmit={handleSubmit(this.onSubmit)}>
-                <Form.Group>
+            <div className="jumbotron">
+                <h3> Update the contact</h3>
+                <Form onSubmit={handleSubmit(this.onSubmit)}>
+                    <Form.Group>
+                        <Field 
+                            name="name"
+                            type="text"
+                            component={FieldInput}
+                            autoComplete="none"
+                            placeholder="Name"
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Field 
+                            name="email"
+                            type="text"
+                            component={FieldInput}
+                            autoComplete="none"
+                            placeholder="Email"
+                        />
+                    </Form.Group>
+                    <Form.Group>
                     <Field 
-                        name="name"
-                        type="text"
+                        name="phone"
+                        type="number"
                         component={FieldInput}
                         autoComplete="none"
-                        placeholder="Name"
+                        placeholder="Phone"
                     />
-                </Form.Group>
-                <Form.Group>
-                    <Field 
-                        name="email"
-                        type="text"
-                        component={FieldInput}
-                        autoComplete="none"
-                        placeholder="Email"
-                    />
-                </Form.Group>
-                <Form.Group>
-                <Field 
-                    name="phone"
-                    type="text"
-                    component={FieldInput}
-                    autoComplete="none"
-                    placeholder="Phone"
-                />
-                </Form.Group>
-                <Button type="submit" className="btn btn-primary">Add</Button>
-            </Form>
+                    </Form.Group>
+                    <Button type="submit" className="btn btn-primary">Update</Button>
+                </Form>
+            </div>
         );
     }
 }

@@ -4,19 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { addContact } from '../actions/contact'
-
-const FieldInput = ({ input, meta, type, placeholder, min, max }) => {
-    return (
-        <Form.Control
-            type={type}
-            placeholder={placeholder}
-            min={min}
-            max={max}
-            value={input.value}
-            onChange={input.onChange}
-            />
-    )
-}
+import FieldInput from './FieldInput';
 class ContactAdd extends React.Component {
 
     onSubmit = (formProps) => {
@@ -34,7 +22,9 @@ class ContactAdd extends React.Component {
         const { handleSubmit } = this.props; 
 
         return (
-            <Form onSubmit={handleSubmit(this.onSubmit)}>
+            <div className="jumbotron">
+                <h3>Add a new contact</h3>
+                <Form onSubmit={handleSubmit(this.onSubmit)}>
                 <Form.Group>
                     <Field 
                         name="name"
@@ -56,7 +46,7 @@ class ContactAdd extends React.Component {
                 <Form.Group>
                 <Field 
                     name="phone"
-                    type="text"
+                    type="number"
                     component={FieldInput}
                     autoComplete="none"
                     placeholder="Phone"
@@ -64,6 +54,8 @@ class ContactAdd extends React.Component {
                 </Form.Group>
                 <Button type="submit" className="btn btn-primary">Add</Button>
             </Form>
+            </div>
+
         );
     }
 }

@@ -1,22 +1,38 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
+import { compose } from 'redux';
+import requireAuth from './requireAuth';
+class Header extends React.Component {
 
-const Header = (props) => {
-    return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home" style={{ color: 'red' }}>Contact Manager</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <NavLink to='/home/contactadd'> <FontAwesomeIcon icon={faUserPlus} /> Add Contact </NavLink>
-                    <Nav.Link href="#link"> <FontAwesomeIcon icon={faSignOutAlt} /> Logout</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    );
+    addContact = () => {
+        this.props.history.push('/home/contactadd');
+    }
+
+    logout = () => {
+        this.props.logout();
+        this.props.history.push('/');
+    }
+
+    render() {
+        return (
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="#home" style={{ color: 'red' }}>Contact Manager</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto">
+                        <Button variant="link" onClick={this.addContact}> <FontAwesomeIcon icon={faUserPlus} /> Add Contact </Button>
+                        <Button variant="link" onClick={this.logout}> <FontAwesomeIcon icon={faSignOutAlt} /> Logout</Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        );
+    }
 };
 
-export default Header;
+export default compose(connect(null , {
+    logout
+}), requireAuth)(Header);

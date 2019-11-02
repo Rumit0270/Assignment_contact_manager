@@ -23,7 +23,7 @@ app.get('/api/', (req, res) => {
 });
 
 const PORT = process.env.APP_PORT || 4000;
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 

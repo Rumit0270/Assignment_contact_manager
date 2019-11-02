@@ -10,7 +10,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <Header />
+            <Header { ...props} />
             <Switch>
                 <Route path="/home/contactlist" component={requireAuth(ContactList)} exact />
                 <Route path="/home/contactadd" component={requireAuth(ContactAdd)} exact />

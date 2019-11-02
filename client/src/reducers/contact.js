@@ -14,8 +14,6 @@ const contactsReducer = (state= INTIAL_STATE, action) => {
         case ADD_CONTACT:
             return [ ...state, action.payload ];
         case UPDATE_CONTACT:
-            console.log('/*/**/*/*/*/')
-            console.log(action.payload)
             const filterContacts = _.filter(state, (contact) => contact.id !== action.payload.id);
             return [ ...filterContacts, action.payload ]
         default:

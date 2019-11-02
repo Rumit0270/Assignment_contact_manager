@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import ContactList from './ContactList';
 import ContactAdd from './ContactAdd';
 import ContactEdit from './ContactEdit';
+import requireAuth from './requireAuth';
 
 const Home = (props) => {
 
@@ -11,9 +12,9 @@ const Home = (props) => {
         <div>
             <Header />
             <Switch>
-                <Route path="/home/contactlist" component={ContactList} exact />
-                <Route path="/home/contactadd" component={ContactAdd} exact />
-                <Route path="/home/contactedit/:id" component={ContactEdit} exact />
+                <Route path="/home/contactlist" component={requireAuth(ContactList)} exact />
+                <Route path="/home/contactadd" component={requireAuth(ContactAdd)} exact />
+                <Route path="/home/contactedit/:id" component={requireAuth(ContactEdit)} exact />
             </Switch>
         </div>
     );

@@ -12,19 +12,20 @@ class ContactList extends React.Component {
 
     renderContacts() {
         const { contacts } = this.props;
-        if(!contacts) {
+        console.log(contacts)
+        if(contacts && contacts.length > 0) {
+            return(
+                <Accordion>
+                    { contacts.map(contact => {
+                        return <Contact { ...this.props} key={contact.id} contact={contact}/>
+                    }) }
+                </Accordion>
+            );
+        } else {
             return (
                 <div>No contacts added yet!</div>
             )
         }
-
-        return(
-            <Accordion>
-                { contacts.map(contact => {
-                    return <Contact key={contact.email} contact={contact}/>
-                }) }
-            </Accordion>
-        );
     }
 
     render() {

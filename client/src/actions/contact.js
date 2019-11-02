@@ -1,4 +1,4 @@
-import { FETCH_CONTACTS, DELETE_CONTACT } from './types';
+import { FETCH_CONTACTS, DELETE_CONTACT, ADD_CONTACT, UPDATE_CONTACT } from './types';
 import apiService from '../services/apiService';
 
 export const fetchContacts = () => {
@@ -32,6 +32,36 @@ export const deleteContact = (id) => {
                 type: DELETE_CONTACT,
                 payload: null
             });
+        }
+    };
+};
+
+export const addContact = (data, callback) => {
+    return async dispatch => {
+        try {
+            const contact = await apiService.post('/api/contacts/', data).then(res => res.data.data.contact);
+            dispatch({
+                type: ADD_CONTACT,
+                payload: contact
+            });
+            callback();
+        } catch(err) {
+            console.log(err);
+        }
+    };
+};
+
+export const updateContact = (id, data, callback) => {
+    return async dispatch => {
+        try {
+            const contact = await apiService.put(`/api/contacts/${id}`, data).then(res => res.data.data.contact);
+            dispatch({
+                type: UPDATE_CONTACT,
+                payload: contact
+            });
+            callback();
+        } catch(err) {
+            console.log(err);
         }
     };
 };

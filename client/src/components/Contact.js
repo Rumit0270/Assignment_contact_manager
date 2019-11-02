@@ -14,6 +14,7 @@ class Contact extends React.Component {
 
     handleEditContact = () => {
         const contactId = this.props.contact.id;
+        console.log(this.props);
         this.props.history.push(`/home/contactedit/${contactId}`);
     }
 

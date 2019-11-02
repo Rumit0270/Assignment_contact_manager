@@ -37,7 +37,7 @@ router.post('/', requireAuth, async (req, res) => {
 router.put('/:id', requireAuth, async (req, res) => {
     const user = req.user;
     const { name, email ,phone } = req.body;
-    const updatedContact = await Contact.update({
+    const [ affectedCount, affectedContacts] = await Contact.update({
         name, email, phone
     }, {
         returning: true,
@@ -47,6 +47,7 @@ router.put('/:id', requireAuth, async (req, res) => {
         }
     });
 
+    const updatedContact = affectedContacts[0];
     return res.status(200).json({
         data: {
             contact: updatedContact

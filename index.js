@@ -22,7 +22,15 @@ app.get('/api/', (req, res) => {
     res.send('Hello world');
 });
 
-const PORT = process.env.APP_PORT || 4000;
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        return res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
+const PORT = process.env.PORT || 4000;
 const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {

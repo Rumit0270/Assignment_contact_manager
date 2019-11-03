@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { updateContact } from '../actions/contact';
 import FieldInput from './FieldInput';
+import { toast } from 'react-toastify';
 class ContactEdit extends React.Component {
 
     onSubmit = (formProps) => {
@@ -14,6 +15,7 @@ class ContactEdit extends React.Component {
 
         this.props.updateContact(id, data, () => {
             this.props.history.push('/home/contactlist');
+            toast.success('Contact updated successfully!');
         });
     }
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
 import { login } from '../actions/auth';
 import './Login.css';
-
 class Login extends React.Component {
 
     componentDidMount() {
@@ -47,7 +46,7 @@ class Login extends React.Component {
             <div className="center">
                 <FacebookLogin 
                     appId="430617580865007"
-                    autoLoad={true}
+                    autoLoad={false}
                     fields="name,email"
                     onClick={this.loginWithFbClicked}
                     callback={this.fbLoginResponseReceived}

@@ -5,16 +5,17 @@ import { faEnvelopeSquare, faPhone, faUserEdit, faTrash } from '@fortawesome/fre
 import { connect } from 'react-redux';
 import { deleteContact } from '../actions/contact';
 import './Contact.css';
+import { toast } from 'react-toastify';
 class Contact extends React.Component {
 
     handleDeleteContact = () => {
         const contactId = this.props.contact.id;
         this.props.deleteContact(contactId);
+        toast.success('Contact deleted successfully!');
     }
 
     handleEditContact = () => {
         const contactId = this.props.contact.id;
-        console.log(this.props);
         this.props.history.push(`/home/contactedit/${contactId}`);
     }
 

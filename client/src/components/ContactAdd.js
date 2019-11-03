@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { addContact } from '../actions/contact'
 import FieldInput from './FieldInput';
+import { toast } from 'react-toastify';
 class ContactAdd extends React.Component {
 
     onSubmit = (formProps) => {
@@ -13,6 +14,7 @@ class ContactAdd extends React.Component {
 
         this.props.addContact(data, () => {
             this.props.history.push('/home/contactlist');
+            toast.success('Contact added successfully!');
         });
     }
 

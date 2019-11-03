@@ -13,7 +13,6 @@ class ContactList extends React.Component {
 
     renderContacts() {
         const { contacts } = this.props;
-        console.log(contacts)
         if(contacts && contacts.length > 0) {
             return(
                 <Accordion>

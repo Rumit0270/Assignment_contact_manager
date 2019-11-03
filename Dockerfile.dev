@@ -1,0 +1,21 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ./package.json ./package-lock.json ./
+
+RUN npm install
+
+RUN mkdir client
+
+COPY ./client/package.json ./client/package-lock.json ./client/
+
+RUN cd client
+
+RUN npm install
+
+RUN cd ..
+
+COPY . .
+
+CMD [ "npm", "run", "dev" ]

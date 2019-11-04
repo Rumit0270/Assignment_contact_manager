@@ -62,11 +62,23 @@ class ContactEdit extends React.Component {
     }
 }
 
-
+const mapStateToProps = (state, ownProps) => {
+    const { id } = ownProps.match.params;
+    const contact = state.contacts.filter(contact => contact.id == id)[0];
+    if (contact) {
+        return {
+            initialValues: {
+                name: contact.name,
+                email: contact.email,
+                phone: contact.phone
+            }
+        }
+    }
+};
 
 export default compose(
-    connect(null, {
+    connect(mapStateToProps, {
         updateContact
     }),
-    reduxForm({ form: 'editContac' })
+    reduxForm({ form: 'editContact', enableReinitialize: true })
 )(ContactEdit);

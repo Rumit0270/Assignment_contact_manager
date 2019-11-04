@@ -43,15 +43,18 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="center">
-                <FacebookLogin 
+            <div className="background">
+                <div className="center">
+                    <FacebookLogin 
                     appId="430617580865007"
                     autoLoad={false}
                     fields="name,email"
                     onClick={this.loginWithFbClicked}
                     callback={this.fbLoginResponseReceived}
-                />
-                <div> { this.props.errorMessage } </div>
+                    cssClass="btnFacebook"
+                    />
+                    <h2> { this.props.errorMessage } </h2>
+                </div>
             </div>
         );
     }
